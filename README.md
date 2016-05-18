@@ -1,30 +1,24 @@
-# Angular Yandex Metrika
-Модуль добавляет на страницу счетчик яндекс метрики, с возможностью отправки javascipt событий.
+# Angular Byte Validator Directive
+Main idea was to create directive to validate model size in bytes to limit text that should be pasted into push notification. But now module also includes **$bytes** service to format and calculate bytes number from UTF-8 string and **bytes** filter to format bytes in pretty format.
+### Install
 ```sh
-    npm install angularjs-yandex-metrika
+    npm install angularjs-bytes-validator --save
 ```
-Чтобы подключить, нужно добавить скрипт в шаблон, либо подключить с помощью загрузчика модулей, и подключить модуль в приложение.
-CommonJS:
+### Usage
 ```javascript
-    require('angularjs-yandex-metrika');
+    require('angularjs-bytes-validator');
+    var app = module('somApp', ['bytes-validator']);
+
+    function SomeCtrl($bytes) {
+        // ...
+        $bytes.lengthInUtf8Bytes(utf8String); // Get utf-8 string length in bytes.
+        $bytes.formatBytes(bytesCount); // Format bytes in pretty format.
+        // Units for formatter ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'].
+    }
 ```
-```javascript
-    var app = module('somApp', ['yandex-metrika']);
-```
-Если вам нужено, чтобы счетчик работал без javascript, нужно добавить это:
 ```html
-<noscript><div><img src="https://mc.yandex.ru/watch/put_your_id_here" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-```
-Для настройки счетчика(как вы понимаете id обязателен):
-```javascript
-function config($metrikaProvider) {
-    $metrikaProvider.configureCounter({id: 35567075, webvisor: true});
-}
-```
-Для отправки javascript события:
-```javascript
-function someCtrl($metrika) {
-    // ...
-    $metrika.fireEvent('some_event_name');
-}
+    <!-- Default value is 140 bytes (<= to be valid) -->
+    <input ng-model="someCtrl.pushText" bytes-validate="140">
+    <textarea ng-model="someCtrl.pushText" bytes-validate="140"></textarea>
+    <div class="bytes">{{::bytesNumber | bytes}}</div>
 ```
