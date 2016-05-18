@@ -1,0 +1,31 @@
+{
+  "name": "angularjs-bytes-validator",
+  "version": "0.1.0",
+  "description": "Angular module that allow validate model by bytes count.",
+  "main": "./dist/bytes-validator.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FriOne/angularjs-bytes-validator.git"
+  },
+  "keywords": [
+    "push notifications",
+    "push",
+    "pushes",
+    "format bytes",
+    "validator",
+    "validate",
+    "bytes",
+    "angular",
+    "angularjs"
+  ],
+  "author": "Lyubimov Roman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FriOne/angularjs-bytes-validator/issues"
+  },
+  "homepage": "https://github.com/FriOne/angularjs-bytes-validator#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-uglify": "^1.5.2"
+  }
+}
