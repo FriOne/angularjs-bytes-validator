@@ -66,16 +66,19 @@ function StringToBytesFilter($bytes) {
 function BytesValidator($bytes) {
 
   return {
+    restrict: 'A',
     require: 'ngModel',
-    link: function ($scope, $elem, $attr, ngModelCtrl) {
-      var limit = $attr.bytesValidate || 140;
-      ngModelCtrl.$validators.unshift(function(modelValue, viewValue) {
-        var value = modelValue || viewValue;
-        if (!value) {
-          return true;
-        }
-        return ($bytes.lengthInUtf8Bytes(value) <= limit);
-      });
-    }
+    link: link
   };
+
+  function link($scope, $elem, $attr, ngModelCtrl) {
+    var limit = parseInt($attr.bytesValidate) || 140;
+    ngModelCtrl.$validators.unshift(function(modelValue, viewValue) {
+      var value = modelValue || viewValue;
+      if (!value) {
+        return true;
+      }
+      return ($bytes.lengthInUtf8Bytes(value) <= limit);
+    });
+  }
 }
