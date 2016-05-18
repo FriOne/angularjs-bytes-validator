@@ -42,6 +42,9 @@ function BytesService() {
 function BytesFilter($bytes) {
 
   return function(number) {
+    if (!number || parseInt(number) == 0) {
+      return '';
+    }
     return $bytes.formatBytes(number);
   }
 }
@@ -49,6 +52,9 @@ function BytesFilter($bytes) {
 function StringToBytesFilter($bytes) {
 
   return function(string) {
+    if (!string || string === '') {
+      return '';
+    }
     return $bytes.formatBytes($bytes.lengthInUtf8Bytes(string));
   }
 }
