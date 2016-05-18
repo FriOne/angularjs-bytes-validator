@@ -12,7 +12,7 @@ function BytesService() {
   this.lengthInUtf8Bytes = lengthInUtf8Bytes;
 
   function lengthInUtf8Bytes(string) {
-    if (!string.length) {
+    if (!string || !string.length) {
       return 0;
     }
     // Matches only the 10.. bytes that are non-initial characters in a multi-byte sequence.
