@@ -1,3 +1,5 @@
+BytesValidator.$inject = BytesFilter.$inject = StringToBytesFilter.$inject = ['$bytes'];
+
 var module = angular.module('bytes-validator', []);
 module.service('$bytes', BytesService);
 module.filter('bytes', BytesFilter);
@@ -37,7 +39,6 @@ function BytesService() {
   }
 }
 
-BytesFilter.$inject = ['$bytes'];
 function BytesFilter($bytes) {
 
   return function(number) {
@@ -45,7 +46,6 @@ function BytesFilter($bytes) {
   }
 }
 
-StringToBytesFilter.$inject = ['$bytes'];
 function StringToBytesFilter($bytes) {
 
   return function(string) {
@@ -53,7 +53,6 @@ function StringToBytesFilter($bytes) {
   }
 }
 
-BytesValidator.$inject = ['$bytes'];
 function BytesValidator($bytes) {
 
   return {
