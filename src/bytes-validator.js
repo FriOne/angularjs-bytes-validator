@@ -12,6 +12,9 @@ function BytesService() {
   this.lengthInUtf8Bytes = lengthInUtf8Bytes;
 
   function lengthInUtf8Bytes(string) {
+    if (!string.length) {
+      return 0;
+    }
     // Matches only the 10.. bytes that are non-initial characters in a multi-byte sequence.
     var m = encodeURIComponent(string).match(/%[89ABab]/g);
     return string.length + (m ? m.length : 0);
@@ -42,7 +45,8 @@ function BytesService() {
 function BytesFilter($bytes) {
 
   return function(number) {
-    if (!number || parseInt(number) == 0) {
+    number = parseInt(number);
+    if (!number || number == 0) {
       return '';
     }
     return $bytes.formatBytes(number);
@@ -52,7 +56,7 @@ function BytesFilter($bytes) {
 function StringToBytesFilter($bytes) {
 
   return function(string) {
-    if (!string || string === '') {
+    if (!string || string == '') {
       return '';
     }
     return $bytes.formatBytes($bytes.lengthInUtf8Bytes(string));
@@ -65,17 +69,12 @@ function BytesValidator($bytes) {
     require: 'ngModel',
     link: function ($scope, $elem, $attr, ngModelCtrl) {
       var limit = $attr.bytesValidate || 140;
-
-      // For DOM -> model validation
-      ngModelCtrl.$parsers.unshift(function (value) {
-        ngModelCtrl.$setValidity('bytes', $bytes.lengthInUtf8Bytes(value) <= limit);
-        return valid ? value : undefined;
-      });
-
-      // For model -> DOM validation
-      ngModelCtrl.$formatters.unshift(function (value) {
-        ngModelCtrl.$setValidity('bytes',  $bytes.lengthInUtf8Bytes(value) <= limit);
-        return value;
+      ngModelCtrl.$validators.unshift(function(modelValue, viewValue) {
+        var value = modelValue || viewValue;
+        if (!value) {
+          return true;
+        }
+        return ($bytes.lengthInUtf8Bytes(value) <= limit);
       });
     }
   };
