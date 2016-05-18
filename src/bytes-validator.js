@@ -1,6 +1,7 @@
 var module = angular.module('bytes-validator', []);
 module.service('$bytes', BytesService);
 module.filter('bytes', BytesFilter);
+module.filter('stringToBytes', StringToBytesFilter);
 module.directive('bytesValidate', BytesService);
 
 function BytesService() {
@@ -8,10 +9,10 @@ function BytesService() {
   this.formatBytes = formatBytes;
   this.lengthInUtf8Bytes = lengthInUtf8Bytes;
 
-  function lengthInUtf8Bytes(str) {
+  function lengthInUtf8Bytes(string) {
     // Matches only the 10.. bytes that are non-initial characters in a multi-byte sequence.
-    var m = encodeURIComponent(str).match(/%[89ABab]/g);
-    return str.length + (m ? m.length : 0);
+    var m = encodeURIComponent(string).match(/%[89ABab]/g);
+    return string.length + (m ? m.length : 0);
   }
 
   function formatBytes(number) {
@@ -41,6 +42,14 @@ function BytesFilter($bytes) {
 
   return function(number) {
     return $bytes.formatBytes(number);
+  }
+}
+
+StringToBytesFilter.$inject = ['$bytes'];
+function StringToBytesFilter($bytes) {
+
+  return function(string) {
+    return $bytes.formatBytes($bytes.lengthInUtf8Bytes(string));
   }
 }
 
