@@ -73,12 +73,12 @@ function BytesValidator($bytes) {
 
   function link($scope, $elem, $attr, ngModelCtrl) {
     var limit = parseInt($attr.bytesValidate) || 140;
-    ngModelCtrl.$validators.unshift(function(modelValue, viewValue) {
+    ngModelCtrl.$validators.bytes = function(modelValue, viewValue) {
       var value = modelValue || viewValue;
       if (!value) {
         return true;
       }
       return ($bytes.lengthInUtf8Bytes(value) <= limit);
-    });
+    };
   }
 }
