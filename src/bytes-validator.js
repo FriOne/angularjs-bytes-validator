@@ -4,7 +4,7 @@ var module = angular.module('bytes-validator', []);
 module.service('$bytes', BytesService);
 module.filter('bytes', BytesFilter);
 module.filter('stringToBytes', StringToBytesFilter);
-module.directive('bytesValidate', BytesService);
+module.directive('bytesValidate', BytesValidator);
 
 function BytesService() {
 

@@ -1,6 +1,6 @@
 {
   "name": "angularjs-bytes-validator",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "Angular module that allow validate model by bytes count.",
   "main": "./dist/bytes-validator.js",
   "repository": {
