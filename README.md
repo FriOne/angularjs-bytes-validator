@@ -1,5 +1,6 @@
 # Angular Byte Validator Directive
-Main idea was to create directive to validate model size in bytes to limit text that should be pasted into push notification. But now module also includes **$bytes** service to format and calculate bytes number from UTF-8 string and **bytes** and **stringToBytes** filter to format string and bytes to pretty format.
+## I posted non-working version and 400 people download it in one day, sorry for that, now it is ok you could use it :)
+Main idea was to create directive to validate model size in bytes to limit text that should be pasted into push notification. But now module also includes **$bytes** service to format and calculate bytes number from UTF-8 string and two filters(**bytes** and **stringToBytes**) to format string and bytes to pretty format.
 ### Install
 ```sh
     npm install angularjs-bytes-validator --save
