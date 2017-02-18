@@ -1,8 +1,8 @@
 {
   "name": "angularjs-bytes-validator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Angular module that allow validate model by bytes count.",
-  "main": "./dist/bytes-validator.js",
+  "main": "./dist/bytes-validator.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FriOne/angularjs-bytes-validator.git"
@@ -25,7 +25,12 @@
   },
   "homepage": "https://github.com/FriOne/angularjs-bytes-validator#readme",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-uglify": "^1.5.2"
+    "@types/angular": "1.x",
+    "angular": "1.x",
+    "awesome-typescript-loader": "3.0.4",
+    "declaration-bundler-webpack-plugin": "^1.0.3",
+    "typescript": "2.1.6",
+    "webpack": "2.x",
+    "webpack-dev-server": "2.x"
   }
 }
