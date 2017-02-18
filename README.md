@@ -9,6 +9,8 @@ Main idea was to create directive to validate model size in bytes to limit text 
 ### Install
 ```sh
     npm install angularjs-bytes-validator --save
+    # or
+    bower install angularjs-bytes-validator --save
 ```
 ### Usage
 ```javascript
@@ -16,7 +18,7 @@ Main idea was to create directive to validate model size in bytes to limit text 
     // or import 'angularjs-bytes-validator';
     var app = module('somApp', ['bytes-validator']);
 
-    function SomeCtrl($bytes) { // or $bytes: BytesService
+    function SomeCtrl($bytes) { // or ($bytes: BytesService) fot typescript if you wish.
         // ...
         $bytes.lengthInUtf8Bytes(utf8String); // Get utf-8 string length in bytes.
         $bytes.formatBytes(bytesCount); // Format bytes in pretty format.
