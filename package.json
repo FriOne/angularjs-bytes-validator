@@ -19,7 +19,7 @@
     "angularjs"
   ],
   "author": "Lyubimov Roman",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/FriOne/angularjs-bytes-validator/issues"
   },
