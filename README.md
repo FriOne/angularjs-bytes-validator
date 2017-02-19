@@ -3,7 +3,7 @@
 Main idea was to create directive to validate model size in bytes to limit text that should be pasted into push notification. But now module also includes **$bytes** service to format and calculate bytes number from UTF-8 string and two filters(**bytes** and **stringToBytes**) to format string and bytes to pretty format.
 
 
-**Module is built with webpack and typescript now. It has typescript definition file and can be load by any type of module loader. If you have any problems with the last version, please, use version 1.0.0**
+**Module is built with webpack and typescript now. It has typescript definition file and can be load by any type of module loader. If you have any problems with the last version, please, use version 1.0.0, or better create issue on github.**
 
 
 ### Install
@@ -18,7 +18,7 @@ Main idea was to create directive to validate model size in bytes to limit text 
     // or import 'angularjs-bytes-validator';
     var app = module('somApp', ['bytes-validator']);
 
-    function SomeCtrl($bytes) { // or ($bytes: BytesService) fot typescript if you wish.
+    function SomeCtrl($bytes) { // or ($bytes: BytesService) for typescript if you wish.
         // ...
         $bytes.lengthInUtf8Bytes(utf8String); // Get utf-8 string length in bytes.
         $bytes.formatBytes(bytesCount); // Format bytes in pretty format.
@@ -32,6 +32,10 @@ Main idea was to create directive to validate model size in bytes to limit text 
     <div ng-messages="someCtrl.form.pushMessage.$error">
         <div ng-message="bytes">Too big text size for push notification</div>
     </div>
+
     <div class="bytes">{{::bytesNumber | bytes}}</div>
+    <!-- formatBytes() from the $bytes service - 0.1kB 0.23MB etc. -->
+
     <div class="bytes">{{::utf8String | stringToBytes}}</div>
+    <!-- lengthInUtf8Bytes() from the $bytes service -->
 ```

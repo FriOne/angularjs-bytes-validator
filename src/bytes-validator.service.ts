@@ -1,6 +1,6 @@
 export class BytesService {
 
-  lengthInUtf8Bytes(string: string) {
+  lengthInUtf8Bytes(string: string): number {
     if (!string || !string.length) {
       return 0;
     }
@@ -9,7 +9,7 @@ export class BytesService {
     return string.length + (m ? m.length : 0);
   }
 
-  formatBytes(number: number) {
+  formatBytes(number: number): string {
     let exponent;
     let unit;
     let negative = number < 0;
